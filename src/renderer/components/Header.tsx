@@ -22,8 +22,7 @@ const Header = () => {
         >
           New Transaction
         </Button>
-       
-        <Typography
+       <Typography
           variant="h6"
           component="div"
           sx={{ flexGrow: 1 }}
