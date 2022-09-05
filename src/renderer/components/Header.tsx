@@ -3,13 +3,11 @@ import { useTransactionContext } from "../TransactionsContext";
 import NewTransactionDialog from "./NewTransactionDialog";
 import { useState } from "react";
 
-
-
 const Header = () => {
   const { totalAmount } = useTransactionContext();
   const [transactionDialogOpen, setTransactionDialogOpen] = useState(false);
 
- return (
+  return (
     <>
     <AppBar position="static" color="secondary" >
       <Toolbar>
