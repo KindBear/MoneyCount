@@ -1,15 +1,16 @@
-import React from 'react';
 import TransactionsList from '../components/TransactionsList';
 import { TransactionProvider } from '../TransactionsContext';
 
-const TransactionsPage = () => {
+const Transactions = () => {
   return (
     <div>
       <TransactionProvider>
-        <TransactionsList />
+        <div>
+          <TransactionsList />
+        </div>
       </TransactionProvider>
     </div>
   );
 };
 
-export default TransactionsPage;
+export default Transactions;
