@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <>
-    <AppBar position="static">
+    <AppBar position="static" color="secondary" >
       <Toolbar>
         <Button
           variant="contained"
@@ -20,11 +20,12 @@ const Header = () => {
         >
           New Transaction
         </Button>
-        <Typography
+       <Typography
           variant="h6"
           component="div"
           sx={{ flexGrow: 1 }}
           align="right"
+          color="#fff"
         >
           Balance: ${totalAmount}
         </Typography>
