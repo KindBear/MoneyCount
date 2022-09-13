@@ -1,8 +1,8 @@
 import Header from './components/Header';
-import MainPage from './components/ComingSoonPages/MainPage';
+import MainPage from './pages/MainPage';
 import NavBar from './components/NavBar';
-import SettingsPage from './components/ComingSoonPages/SettingsPage';
-import TransactionsPage from './components/Pages/TransactionsPage';
+import SettingsPage from './pages/SettingsPage';
+import TransactionsPage from './pages/TransactionsPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from '@emotion/styled';
 

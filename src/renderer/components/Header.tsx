@@ -1,7 +1,8 @@
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
-import { useTransactionContext } from "../TransactionsContext";
-import NewTransactionDialog from "./NewTransactionDialog";
-import { useState } from "react";
+import { AppBar, Button, Toolbar, Typography } from '@mui/material';
+import { useTransactionContext } from '../TransactionsContext';
+import NewTransactionDialog from './NewTransactionDialog';
+import { useState } from 'react';
+import DatePicker from './DatePicker';
 
 const Header = () => {
   const { totalAmount } = useTransactionContext();
@@ -9,31 +10,34 @@ const Header = () => {
 
   return (
     <>
-    <AppBar position="static" color="secondary" >
-      <Toolbar>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            setTransactionDialogOpen(true);
-          }}
-        >
-          New Transaction
-        </Button>
-       <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1 }}
-          align="right"
-          color="#fff"
-        >
-          Balance: ${totalAmount}
-        </Typography>
-      </Toolbar>
-    </AppBar>
-      <NewTransactionDialog open={transactionDialogOpen} onClose={() => {
-        setTransactionDialogOpen(false);
-      }} />
+      <AppBar position="static">
+        <Toolbar>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              setTransactionDialogOpen(true);
+            }}
+          >
+            New Transaction
+          </Button>
+          <DatePicker />
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+            align="right"
+          >
+            Balance: ${totalAmount}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <NewTransactionDialog
+        open={transactionDialogOpen}
+        onClose={() => {
+          setTransactionDialogOpen(false);
+        }}
+      />
     </>
   );
 };
