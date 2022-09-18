@@ -3,12 +3,12 @@ import Header from './components/Header';
 import NavBar from './components/NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from '@emotion/styled';
+import MainPage from "./pages/MainPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import SettingsPage from "./pages/SettingsPage";
-import MainPage from "./pages/MainPage";
 
-const AppContainer = styled.div(({theme}: any) => ({
-    backgroundColor: theme.palette.primary.main,
+const AppContainer = styled.div(({ theme }: any) => ({
+  backgroundColor: theme.palette.primary.main,
 }));
 
 const App = () => {
