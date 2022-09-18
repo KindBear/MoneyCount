@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTransactionContext } from "../TransactionsContext";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 

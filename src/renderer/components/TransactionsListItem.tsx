@@ -1,3 +1,4 @@
+import React from 'react';
 import { TransactionDto } from "../dto/Transaction.dto";
 
 interface TransactionsListItemProps {
