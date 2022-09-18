@@ -1,3 +1,4 @@
+import React from "react";
 import { Dialog, DialogTitle } from "@mui/material";
 import NewTransactionForm from "./NewTransactionForm";
 

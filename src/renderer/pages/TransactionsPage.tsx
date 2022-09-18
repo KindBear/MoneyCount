@@ -1,6 +1,6 @@
 import React from 'react';
 import TransactionsList from '../components/TransactionsList';
-import { TransactionProvider } from 'renderer/TransactionsContext';
+import { TransactionProvider } from '../TransactionsContext';
 
 const TransactionsPage = () => {
   return (

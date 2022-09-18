@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import { useTransactionContext } from "../TransactionsContext";
 import NewTransactionDialog from "./NewTransactionDialog";
-import { useState } from "react";
 
 const Header = () => {
   const { totalAmount } = useTransactionContext();
