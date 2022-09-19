@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -12,12 +12,6 @@ const AppContainer = styled.div(({ theme }: any) => ({
 }));
 
 const App = () => {
-    useEffect(() => {
-        window.electron.ipcRenderer.invoke("categories/get").then(result => {
-            console.log(result);
-        });
-    }, [])
-
     return (
         <Router>
             <AppContainer>

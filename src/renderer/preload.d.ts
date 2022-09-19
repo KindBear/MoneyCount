@@ -1,5 +1,5 @@
 export interface ipcRenderer {
-    invoke: (channel: string, ...args: unknown[]) => Promise<any>,
+    invoke: <A, R>(channel: string, args: A) => Promise<R>,
 }
 
 declare global {

@@ -1,4 +1,4 @@
-function api(channel: string, ...args: unknown[]): Promise<any> {
+function api<A, R>(channel: string, args?: A): Promise<R> {
   return window.electron.ipcRenderer.invoke(channel, args)
 }
 

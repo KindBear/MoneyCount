@@ -1,12 +1,23 @@
-interface Category {
+export interface Category {
   id: string;
-  name: String;
+  name: string;
   subcategories: Subcategory[];
 }
 
-interface Subcategory {
+export interface Subcategory {
   id: string;
   name: string;
 }
 
-export default Category;
+export type CategoryUpdateData = {
+  id: string;
+  name: string;
+}
+
+export type CategoryCreateData = {
+  name: string;
+}
+
+export type CategoryDeleteData = {
+  id: string;
+}
