@@ -1,7 +1,8 @@
+import React from 'react';
 import TransactionsList from '../components/TransactionsList';
 import { TransactionProvider } from '../TransactionsContext';
 
-const Transactions = () => {
+const TransactionsPage = () => {
   return (
     <div>
       <TransactionProvider>
@@ -13,4 +14,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions;
+export default TransactionsPage;
