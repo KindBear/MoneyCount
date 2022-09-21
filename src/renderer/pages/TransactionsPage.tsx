@@ -6,7 +6,9 @@ const TransactionsPage = () => {
   return (
     <div>
       <TransactionProvider>
-        <TransactionsList />
+        <div>
+          <TransactionsList />
+        </div>
       </TransactionProvider>
     </div>
   );
