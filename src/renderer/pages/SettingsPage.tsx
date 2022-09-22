@@ -1,9 +1,22 @@
-import React from "react";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Tabs  from '@mui/material/Tabs';
+import { StyledTab } from '../components/StyleMui/StyledTab';
 
-const SettingsPage = () => {
+const SettingsTabs = () => {
+ 
   return (
-    <div>SettingsPage is Coming Soon...</div>
+    <Box sx={{
+      width: '1856px',
+      height: '48px',
+      paddingLeft: '8px',
+    }}>
+      <Tabs>
+        <StyledTab label='General'/>
+        <StyledTab label='Categories' />
+      </Tabs>
+    </Box>
   );
 };
 
-export default SettingsPage;
+export default SettingsTabs;
