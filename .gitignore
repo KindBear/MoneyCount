@@ -91,3 +91,6 @@ out/
 # Code editor ssettings
 .idea
 .vscode
+
+# user application folder
+userData
