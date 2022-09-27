@@ -1,43 +1,20 @@
-import React, { useState } from 'react';
-import { AppBar, Button, Toolbar, Typography } from '@mui/material';
-import { useTransactionContext } from '../TransactionsContext';
-import NewTransactionDialog from './NewTransactionDialog';
+import React from 'react';
+import { Typography } from '@mui/material';
+import { AppHeader } from './StyleMui/AppHeader';
+import { useLocation } from 'react-router-dom';
+import { NAV_ITEMS } from '../navItems';
 
 const Header = () => {
-  const { totalAmount } = useTransactionContext();
-  const [transactionDialogOpen, setTransactionDialogOpen] = useState(false);
 
-  return (
-    <>
-      <AppBar position="static">
-        <Toolbar>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              setTransactionDialogOpen(true);
-            }}
-          >
-            New Transaction
-          </Button>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1 }}
-            align="right"
-          >
-            Balance: ${totalAmount}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <NewTransactionDialog
-        open={transactionDialogOpen}
-        onClose={() => {
-          setTransactionDialogOpen(false);
-        }}
-      />
-    </>
-  );
-};
+  const location = useLocation();
+
+  
+ return (
+      <AppHeader>
+    <Typography variant='h3'>
+   {NAV_ITEMS.find((element) => location.pathname === element.path).title}
+  </Typography>
+</AppHeader>
+)};
 
 export default Header;
