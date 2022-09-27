@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Tabs  from '@mui/material/Tabs';
 import { StyledTab } from '../components/StyleMui/StyledTab';
 
-const SettingsTabs = () => {
+const SettingsPage = () => {
  
   return (
     <Box sx={{
@@ -13,10 +13,10 @@ const SettingsTabs = () => {
     }}>
       <Tabs>
         <StyledTab label='General'/>
-        <StyledTab label='Categories' />
+        <StyledTab label='Categories'/>
       </Tabs>
     </Box>
   );
 };
 
-export default SettingsTabs;
+export default SettingsPage;

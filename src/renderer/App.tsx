@@ -28,13 +28,7 @@ const App = () => {
             <Drawer />
               <AppBody>
                 <Routes>
-                  {NAV_ITEMS.map((item) => (
-                    <Route
-                      path={item.path}
-                      element={item.component}
-                      key={`route_${item.path}`}
-                    />
-                  ))}
+                  {NAV_ITEMS.map((item) => <Route path={item.path} element={item.component}/> )}
                 </Routes>
               </AppBody>
           </AppContainer>
