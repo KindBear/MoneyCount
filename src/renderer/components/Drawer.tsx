@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom';
 import { StyledDrawer } from './StyleMui/StyledDrawer';
 import MenuButton from './StyleMui/MenuButton';
 import { NAV_ITEMS } from '../navItems';
+import { useLocation } from 'react-router-dom';
+
 
 const Drawer = () => {
-  
+ 
+  const location = useLocation();
+
   return (
     <StyledDrawer variant='permanent'>
       {NAV_ITEMS.map((item) =>{
@@ -13,9 +17,9 @@ const Drawer = () => {
           return (
             <Link  
               key={title} 
-              to={`/${path}`}
+              to={path}
              >
-              <MenuButton>
+              <MenuButton active={path === location.pathname}>
                 {icon}
               </MenuButton>
             </Link>
@@ -25,3 +29,4 @@ const Drawer = () => {
   )}   
 
   export default Drawer;
+  

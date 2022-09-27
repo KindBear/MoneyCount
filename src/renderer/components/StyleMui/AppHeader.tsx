@@ -1,8 +1,11 @@
 import React from "react";
 import styled from '@emotion/styled';
 
-export const AppHeader = styled.div(({theme}: any) => ({
+export const AppHeader = styled.header(({theme}: any) => ({
     background: 'rgba(0, 0, 0, 0.15)',
-    width: '1920px',
     height: '64px',
-  }));
+    paddingLeft: '80px',
+    color: '#fff',
+    display: 'flex',
+    alignItems: 'center',
+}));

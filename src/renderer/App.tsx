@@ -2,10 +2,8 @@ import React from "react";
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import styled from '@emotion/styled';
-import MainPage from "./pages/MainPage";
-import TransactionsPage from "./pages/TransactionsPage";
-import SettingsPage from "./pages/SettingsPage";
 import Header from "./components/Header";
+import { NAV_ITEMS } from "./navItems";
 
 const AppContainer = styled.div(({theme}: any) => ({
     backgroundColor: theme.palette.primary.main,
@@ -24,13 +22,11 @@ const App = () => {
     return (
         <Router>
           <AppContainer>
-            <Header />
+            <Header/>
             <Drawer />
               <AppBody>
                 <Routes>
-                  <Route path="/MainPage" element={<MainPage/>}/>
-                  <Route path="/TransactionsPage" element={<TransactionsPage/>}/>
-                  <Route path="/SettingsPage" element={<SettingsPage/>}/>
+                  {NAV_ITEMS.map((item) => <Route path={item.path} element={item.component}/> )}
                 </Routes>
               </AppBody>
           </AppContainer>
