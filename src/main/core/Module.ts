@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import { MetadataKeys } from "./MetadataKeys";
 import { ipcMain } from "electron";
+import { implementsOnInit } from "./onInit";
 
 export interface Type<T> {
   new(...args: any[]): T;
@@ -36,6 +37,10 @@ export class Module {
     );
     const instance = new target(...injections);
     Module.container.set(target.name, instance);
+
+    if (implementsOnInit(instance)) {
+      instance.onInit();
+    }
 
     return instance;
   }
