@@ -1,28 +1,28 @@
-import React from 'react';
-import SettingsIcon from '@mui/icons-material/Settings';
-import ViewListSharpIcon from '@mui/icons-material/ViewListSharp';
-import HomeIcon from '@mui/icons-material/Home';
+import React from "react";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ViewListSharpIcon from "@mui/icons-material/ViewListSharp";
+import HomeIcon from "@mui/icons-material/Home";
 import MainPage from "./pages/MainPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import SettingsPage from "./pages/SettingsPage";
 
 export const NAV_ITEMS = [
-    {
-    title: 'General Info',
+  {
+    title: "General Info",
     icon: <HomeIcon />,
-    path: '/',
+    path: "/",
     component: <MainPage/>,
   },
-    {
-    title: 'Transactions',
+  {
+    title: "Transactions",
     icon: <ViewListSharpIcon />,
-    path: '/transactions',
+    path: "/transactions",
     component: <TransactionsPage/>,
   },
-    {
-    title: 'Settings',
+  {
+    title: "Settings",
     icon: <SettingsIcon />,
-    path: '/settings',
+    path: "/settings",
     component: <SettingsPage/>,
-  }
-  ];
+  },
+];

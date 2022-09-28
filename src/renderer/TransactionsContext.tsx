@@ -4,15 +4,15 @@ import { TransactionDto } from "./dto/Transaction.dto";
 import { transactionsMock } from "./mock";
 
 interface TransactionsContextValue {
-  transactions: TransactionDto[],
-  totalAmount: number,
-  createNewTransaction: Function;
+  transactions: TransactionDto[];
+  totalAmount: number;
+  createNewTransaction: (options: any) => void;
 }
 
 const TransactionsContext = React.createContext<TransactionsContextValue>({
   transactions: [],
   totalAmount: 0,
-  createNewTransaction: () => {},
+  createNewTransaction: () => null,
 });
 
 export const TransactionProvider = (props: any) => {
@@ -21,7 +21,7 @@ export const TransactionProvider = (props: any) => {
   const createNewTransaction = (options: any) => {
     service.createNewTransaction(options);
     setService(new TransactionsService(service.transactions));
-  }
+  };
 
   return (
     <TransactionsContext.Provider value={{
@@ -32,8 +32,8 @@ export const TransactionProvider = (props: any) => {
       {props.children}
     </TransactionsContext.Provider>
   );
-}
+};
 
 export const useTransactionContext = () => {
   return useContext(TransactionsContext);
-}
+};

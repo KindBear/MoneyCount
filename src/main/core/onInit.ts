@@ -1,7 +1,7 @@
-export interface onInit {
-  onInit: Function;
+export interface OnInit {
+  onInit: () => void;
 }
 
-export function implementsOnInit(object: any): object is onInit {
-  return 'onInit' in object;
+export function implementsOnInit(object: {}): object is OnInit {
+  return "onInit" in object;
 }

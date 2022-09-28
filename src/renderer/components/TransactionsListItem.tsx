@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import { TransactionDto } from "../dto/Transaction.dto";
 
 interface TransactionsListItemProps {
-  item: TransactionDto
+  item: TransactionDto;
 }
 
-const TransactionsListItem = ({item}: TransactionsListItemProps) => {
+const TransactionsListItem = ({ item }: TransactionsListItemProps) => {
   return (
     <div>
       <div>{item.date.toLocaleDateString()}</div>

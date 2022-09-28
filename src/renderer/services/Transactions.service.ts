@@ -7,18 +7,18 @@ export interface NewTransactionOptions {
   comment?: string;
 }
 
-export class TransactionsService{
+export class TransactionsService {
   private _transactions: TransactionDto[] = [];
 
   constructor(transactions?: TransactionDto[]) {
     this._transactions = transactions || [];
   }
 
-  get transactions() {
+  public get transactions() {
     return this._transactions;
   }
 
-  get totalAmount() {
+  public get totalAmount() {
     let total = 0;
     this._transactions.forEach((transaction) => {
       if (transaction.type === TransactionTypes.INCOME) {
