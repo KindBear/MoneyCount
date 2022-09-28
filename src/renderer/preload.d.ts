@@ -1,11 +1,11 @@
-export interface ipcRenderer {
-    invoke: <A, R>(channel: string, args: A) => Promise<R>,
+export interface IpcRenderer {
+  invoke: <A, R>(channel: string, args: A) => Promise<R>;
 }
 
 declare global {
     interface Window {
-        electron: {
-            ipcRenderer: ipcRenderer
-        }
+      electron: {
+        ipcRenderer: IpcRenderer,
+      };
     }
 }

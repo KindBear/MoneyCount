@@ -3,7 +3,7 @@ import {
   CreateTransactionData,
   DeleteTransactionData,
   EditTransactionData,
-  Transaction
+  Transaction,
 } from "../../shared/types/Transactions";
 
 enum TransactionsChannel {

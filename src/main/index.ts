@@ -10,13 +10,13 @@ import { FileService } from "./services/FileService";
 
 Module.bootstrap({
   controllers: [CategoryController],
-  services: [FileService, CategoryService]
+  services: [FileService, CategoryService],
 });
 
 class App {
-  mainWindow: BrowserWindow;
+  public mainWindow: BrowserWindow;
 
-  start() {
+  public start() {
     app.on("ready", this.createWindow);
 
     app.on("window-all-closed", () => {
@@ -24,18 +24,18 @@ class App {
     });
   }
 
-  createWindow(): void {
+  public createWindow(): void {
     this.mainWindow = new BrowserWindow({
       height: 900,
       width: 1500,
       webPreferences: {
         preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-        nodeIntegration: true
-      }
+        nodeIntegration: true,
+      },
     });
     this.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
     this.mainWindow.webContents.openDevTools();
-  };
+  }
 }
 
 const mainApp = new App();

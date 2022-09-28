@@ -1,47 +1,47 @@
 import { Category } from "../../shared/types/Category";
 import { FileService } from "./FileService";
-import { onInit } from "../core/onInit";
+import { OnInit } from "../core/onInit";
 import { service } from "../core/service";
 
 @service()
-export class CategoryService implements onInit {
-  categories: Category[] = [];
-  fileName = "categories.json";
+export class CategoryService implements OnInit {
+  public categories: Category[] = [];
+  public fileName = "categories.json";
 
   constructor(
-    private fileService: FileService
+    private fileService: FileService,
   ) {
   }
 
-  async onInit() {
+  public async onInit() {
     const categoriesJSON = await this.fileService.readFile(this.fileName);
     if (categoriesJSON) {
       this.categories = JSON.parse(categoriesJSON);
     }
   }
 
-  createCategory(name: string): Category {
+  public createCategory(name: string): Category {
     const newCategory: Category = {
       id: `${this.categories.length}_${name}`,
       name,
-      subcategories: []
+      subcategories: [],
     };
     this.categories.push(newCategory);
     this.saveChanges();
     return newCategory;
   }
 
-  deleteCategory(id: string): void {
+  public deleteCategory(id: string): void {
     this.categories = this.categories.filter(category => category.id !== id);
     this.saveChanges();
   }
 
-  updateCategory(id: string, name: string): Category {
+  public updateCategory(id: string, name: string): Category {
     this.categories = this.categories.map(category => {
       if (category.id === id) {
         return {
           ...category,
-          name
+          name,
         };
       }
 
@@ -52,7 +52,7 @@ export class CategoryService implements onInit {
     return this.categories.find(category => category.id === id);
   }
 
-  saveChanges() {
+  public saveChanges() {
     this.fileService.writeFile(this.fileName, JSON.stringify(this.categories));
   }
 }

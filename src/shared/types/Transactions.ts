@@ -21,11 +21,11 @@ export type CreateTransactionData = {
   categoryId?: string;
   subCategoryId?: string;
   comment?: string;
-}
+};
 
 export type DeleteTransactionData = {
   id: string;
-}
+};
 
 export type EditTransactionData = {
   id: string;
@@ -35,4 +35,4 @@ export type EditTransactionData = {
   categoryId?: string;
   subCategoryId?: string;
   comment?: string;
-}
+};

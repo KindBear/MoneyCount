@@ -1,26 +1,26 @@
 import { FileService } from "./FileService";
-import { onInit } from "../core/onInit";
+import { OnInit } from "../core/onInit";
 import { service } from "../core/service";
 import { CreateTransactionData, EditTransactionData, Transaction } from "../../shared/types/Transactions";
 
 @service()
-export class TransactionsService implements onInit {
-  transactions: Transaction[] = [];
-  fileName = "transactions.json";
+export class TransactionsService implements OnInit {
+  public transactions: Transaction[] = [];
+  public fileName = "transactions.json";
 
   constructor(
-    private fileService: FileService
+    private fileService: FileService,
   ) {
   }
 
-  async onInit() {
+  public async onInit() {
     const categoriesJSON = await this.fileService.readFile(this.fileName);
     if (categoriesJSON) {
       this.transactions = JSON.parse(categoriesJSON);
     }
   }
 
-  createTransaction(data: CreateTransactionData): Transaction {
+  public createTransaction(data: CreateTransactionData): Transaction {
     const newTransaction: Transaction = {
       ...data,
       id: `${this.transactions.length}_${+new Date(data.date)}`,
@@ -32,17 +32,17 @@ export class TransactionsService implements onInit {
     return newTransaction;
   }
 
-  deleteTransaction(id: string): void {
+  public deleteTransaction(id: string): void {
     this.transactions = this.transactions.filter(transaction => transaction.id !== id);
     this.saveChanges();
   }
 
-  updateTransaction({id, ...otherData}: EditTransactionData): Transaction {
+  public updateTransaction({ id, ...otherData }: EditTransactionData): Transaction {
     this.transactions = this.transactions.map(transaction => {
       if (transaction.id === id) {
         return {
           ...transaction,
-          ...otherData
+          ...otherData,
         };
       }
 
@@ -53,7 +53,7 @@ export class TransactionsService implements onInit {
     return this.transactions.find(transaction => transaction.id === id);
   }
 
-  saveChanges() {
+  public saveChanges() {
     this.fileService.writeFile(this.fileName, JSON.stringify(this.transactions));
   }
 }
