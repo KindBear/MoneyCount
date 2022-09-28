@@ -14,7 +14,7 @@ export class CategoryController {
 
   @channel("get")
   public getCategories(): Category[] {
-    return this.categoryService.categories;
+    return this.categoryService.categories.value;
   }
 
   @channel("create")
