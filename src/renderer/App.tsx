@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Drawer from "./components/Drawer";
 import styled from "@emotion/styled";
 import Header from "./components/Header";
