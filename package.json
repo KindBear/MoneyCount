@@ -9,8 +9,8 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "tslint -c tslint.json src/**/*/*.{ts,tsx}",
-    "lint:fix": "tslint -c tslint.json src/**/*/*.{ts,tsx} --fix"
+    "lint": "tslint -c tslint.json --project .",
+    "lint:fix": "tslint -c tslint.json --project . --fix"
   },
   "keywords": [],
   "author": {

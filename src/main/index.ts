@@ -10,11 +10,11 @@ import { FileService } from "./services/FileService";
 
 Module.bootstrap({
   controllers: [CategoryController],
-  services: [FileService, CategoryService],
+  services: [FileService, CategoryService]
 });
 
 class App {
-  mainWindow: BrowserWindow;
+  mainWindow: any;
 
   start() {
     app.on("ready", this.createWindow);
@@ -30,8 +30,8 @@ class App {
       width: 1500,
       webPreferences: {
         preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-        nodeIntegration: true,
-      },
+        nodeIntegration: true
+      }
     });
     this.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
     this.mainWindow.webContents.openDevTools();
