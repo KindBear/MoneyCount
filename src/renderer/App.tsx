@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import Header from "./components/Header";
 import { NAV_ITEMS } from "./navItems";
 
+// tslint:disable-next-line
 const AppContainer = styled.div(({ theme }: any) => ({
   backgroundColor: theme.palette.primary.main,
   width: "100vw",
@@ -12,11 +13,11 @@ const AppContainer = styled.div(({ theme }: any) => ({
   overflow: "auto",
 }));
 
-const AppBody = styled.div(({ theme }: any) => ({
+const AppBody = styled.div({
   marginLeft: "64px",
   width: "calc(100vw - 64px)",
   height: "calc(100vh - 64px)",
-}));
+});
 
 const App = () => {
   return (
@@ -26,7 +27,13 @@ const App = () => {
             <Drawer />
               <AppBody>
                 <Routes>
-                  {NAV_ITEMS.map((item) => <Route path={item.path} element={item.component} key={`route_${item.path}`}/>)}
+                  {NAV_ITEMS.map((item) => (
+                    <Route
+                      path={item.path}
+                      element={item.component}
+                      key={`route_${item.path}`}
+                    />
+                  ))}
                 </Routes>
               </AppBody>
           </AppContainer>

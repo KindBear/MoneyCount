@@ -10,7 +10,8 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "tslint -c tslint.json --project .",
-    "lint:fix": "tslint -c tslint.json --project . --fix"
+    "lint:fix": "tslint -c tslint.json --project . --fix",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": {
@@ -108,10 +109,5 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "reflect-metadata": "^0.1.13"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
   }
 }

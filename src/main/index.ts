@@ -14,7 +14,7 @@ Module.bootstrap({
 });
 
 class App {
-  public mainWindow: any;
+  public mainWindow: BrowserWindow;
 
   public start() {
     app.on("ready", this.createWindow);
