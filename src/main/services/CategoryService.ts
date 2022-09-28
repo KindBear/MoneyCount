@@ -2,42 +2,45 @@ import { Category } from "../../shared/types/Category";
 import { FileService } from "./FileService";
 import { OnInit } from "../core/onInit";
 import { service } from "../core/service";
+import { Observable } from "../core/Observable";
 
 @service()
 export class CategoryService implements OnInit {
-  public categories: Category[] = [];
+  public categories: Observable<Category[]>;
   public fileName = "categories.json";
 
   constructor(
     private fileService: FileService,
   ) {
+    this.categories = new Observable<Category[]>([]);
   }
 
   public async onInit() {
     const categoriesJSON = await this.fileService.readFile(this.fileName);
     if (categoriesJSON) {
-      this.categories = JSON.parse(categoriesJSON);
+      this.categories.value = JSON.parse(categoriesJSON);
     }
+    this.categories.subscribe((value) => {
+      this.fileService.writeFile(this.fileName, JSON.stringify(value));
+    });
   }
 
   public createCategory(name: string): Category {
     const newCategory: Category = {
-      id: `${this.categories.length}_${name}`,
+      id: `${this.categories.value.length}_${name}`,
       name,
       subcategories: [],
     };
-    this.categories.push(newCategory);
-    this.saveChanges();
+    this.categories.value = [...this.categories.value, newCategory];
     return newCategory;
   }
 
   public deleteCategory(id: string): void {
-    this.categories = this.categories.filter(category => category.id !== id);
-    this.saveChanges();
+    this.categories.value = this.categories.value.filter(category => category.id !== id);
   }
 
   public updateCategory(id: string, name: string): Category {
-    this.categories = this.categories.map(category => {
+    this.categories.value = this.categories.value.map(category => {
       if (category.id === id) {
         return {
           ...category,
@@ -48,11 +51,6 @@ export class CategoryService implements OnInit {
       return category;
     });
 
-    this.saveChanges();
-    return this.categories.find(category => category.id === id);
-  }
-
-  public saveChanges() {
-    this.fileService.writeFile(this.fileName, JSON.stringify(this.categories));
+    return this.categories.value.find(category => category.id === id);
   }
 }
