@@ -1,16 +1,11 @@
 import React from "react";
-import TransactionsList from "../components/TransactionsList";
-import { TransactionProvider } from "../TransactionsContext";
+import TransactionsFilters from "../components/Transactions/TransactionsFilters";
 
 const TransactionsPage = () => {
   return (
-    <div>
-      <TransactionProvider>
-        <div>
-          <TransactionsList />
-        </div>
-      </TransactionProvider>
-    </div>
+    <>
+      <TransactionsFilters />
+    </>
   );
 };
 
