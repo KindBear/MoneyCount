@@ -2,43 +2,48 @@ import { FileService } from "./FileService";
 import { OnInit } from "../core/onInit";
 import { service } from "../core/service";
 import { CreateTransactionData, EditTransactionData, Transaction } from "../../shared/types/Transactions";
+import { Observable } from "../core/Observable";
 
 @service()
 export class TransactionsService implements OnInit {
-  public transactions: Transaction[] = [];
-  public fileName = "transactions.json";
+  private _transactions = new Observable<Transaction[]>([]);
+  private fileName = "transactions.json";
 
   constructor(
     private fileService: FileService,
   ) {
   }
 
+  public get transactions(): Transaction[] {
+    return this._transactions.value;
+  }
+
   public async onInit() {
     const categoriesJSON = await this.fileService.readFile(this.fileName);
     if (categoriesJSON) {
-      this.transactions = JSON.parse(categoriesJSON);
+      this._transactions.value = JSON.parse(categoriesJSON);
     }
   }
 
   public createTransaction(data: CreateTransactionData): Transaction {
     const newTransaction: Transaction = {
       ...data,
-      id: `${this.transactions.length}_${+new Date(data.date)}`,
+      id: `${this._transactions.value.length}_${+new Date(data.date)}`,
       categoryId: data.categoryId || null,
       subCategoryId: data.subCategoryId || null,
     };
-    this.transactions.push(newTransaction);
+    this._transactions.value = [...this._transactions.value, newTransaction];
     this.saveChanges();
     return newTransaction;
   }
 
   public deleteTransaction(id: string): void {
-    this.transactions = this.transactions.filter(transaction => transaction.id !== id);
+    this._transactions.value = this._transactions.value.filter(transaction => transaction.id !== id);
     this.saveChanges();
   }
 
   public updateTransaction({ id, ...otherData }: EditTransactionData): Transaction {
-    this.transactions = this.transactions.map(transaction => {
+    this._transactions.value = this._transactions.value.map(transaction => {
       if (transaction.id === id) {
         return {
           ...transaction,
@@ -50,10 +55,10 @@ export class TransactionsService implements OnInit {
     });
 
     this.saveChanges();
-    return this.transactions.find(transaction => transaction.id === id);
+    return this._transactions.value.find(transaction => transaction.id === id);
   }
 
   public saveChanges() {
-    this.fileService.writeFile(this.fileName, JSON.stringify(this.transactions));
+    this.fileService.writeFile(this.fileName, JSON.stringify(this._transactions));
   }
 }

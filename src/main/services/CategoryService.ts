@@ -6,41 +6,45 @@ import { Observable } from "../core/Observable";
 
 @service()
 export class CategoryService implements OnInit {
-  public categories: Observable<Category[]>;
-  public fileName = "categories.json";
+  private _categories: Observable<Category[]>;
+  private fileName = "categories.json";
 
   constructor(
     private fileService: FileService,
   ) {
-    this.categories = new Observable<Category[]>([]);
+    this._categories = new Observable<Category[]>([]);
+  }
+
+  public get categories(): Category[] {
+    return this._categories.value;
   }
 
   public async onInit() {
     const categoriesJSON = await this.fileService.readFile(this.fileName);
     if (categoriesJSON) {
-      this.categories.value = JSON.parse(categoriesJSON);
+      this._categories.value = JSON.parse(categoriesJSON);
     }
-    this.categories.subscribe((value) => {
+    this._categories.subscribe((value) => {
       this.fileService.writeFile(this.fileName, JSON.stringify(value));
     });
   }
 
   public createCategory(name: string): Category {
     const newCategory: Category = {
-      id: `${this.categories.value.length}_${name}`,
+      id: `${this._categories.value.length}_${name}`,
       name,
       subcategories: [],
     };
-    this.categories.value = [...this.categories.value, newCategory];
+    this._categories.value = [...this._categories.value, newCategory];
     return newCategory;
   }
 
   public deleteCategory(id: string): void {
-    this.categories.value = this.categories.value.filter(category => category.id !== id);
+    this._categories.value = this._categories.value.filter(category => category.id !== id);
   }
 
   public updateCategory(id: string, name: string): Category {
-    this.categories.value = this.categories.value.map(category => {
+    this._categories.value = this._categories.value.map(category => {
       if (category.id === id) {
         return {
           ...category,
@@ -51,6 +55,6 @@ export class CategoryService implements OnInit {
       return category;
     });
 
-    return this.categories.value.find(category => category.id === id);
+    return this._categories.value.find(category => category.id === id);
   }
 }
