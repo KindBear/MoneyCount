@@ -8,11 +8,11 @@ const Header = () => {
   const location = useLocation();
 
   return (
-<AppHeader>
-<Typography variant="h3">
-{HEADER_TITLES[location.pathname]}
-</Typography>
-</AppHeader>
+    <AppHeader>
+      <Typography variant="h3">
+        {HEADER_TITLES[location.pathname]}
+      </Typography>
+    </AppHeader>
   );
 };
 
