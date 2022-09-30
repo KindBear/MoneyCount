@@ -9,7 +9,7 @@ import { TransactionTypes } from "../../shared/types/Transactions";
 export type TransactionFormValues = {
   date: Date;
   amount: number;
-  type: TransactionTypes | "default";
+  type: TransactionTypes;
   // category: null,
   // subCategory: null,
   description: string | null;

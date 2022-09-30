@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TransactionsFilters from "../components/Transactions/TransactionsFilters";
 import CreateTransactionModal from "../components/Transactions/CreateTransactionModal";
 import { SelectChangeEvent } from "@mui/material";
+import TransactionsTable from "../components/Transactions/TransactionsTable";
 
 const TransactionsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -27,6 +28,7 @@ const TransactionsPage = () => {
         changePeriod={changePeriod}
       />
       <CreateTransactionModal open={isModalOpen} onClose={closeModal} />
+      <TransactionsTable />
     </>
   );
 };

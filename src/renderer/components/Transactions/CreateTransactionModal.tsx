@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { useFormik } from "formik";
 import CreateTransactionForm, { TransactionFormValues } from "../../forms/CreateTransactionForm";
+import transactionsContext from "../../contexts/TransactionsContext";
+import { TransactionTypes } from "../../../shared/types/Transactions";
 
 type CreateTransactionModalProps = {
   open: boolean;
@@ -14,19 +16,18 @@ const CreateTransactionModal = ({
   onClose,
   // onSubmit,
                                 }: CreateTransactionModalProps) => {
+  const transactionStore = useContext(transactionsContext);
 
   const formik = useFormik<TransactionFormValues>({
     initialValues: {
       date: null,
       amount: null,
-      type: "default",
+      type: TransactionTypes.OUTCOME,
       // category: null,
       // subCategory: null,
       description: "",
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit: () => {},
   });
 
   return (
@@ -37,7 +38,10 @@ const CreateTransactionModal = ({
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={onClose}>Add transaction</Button>
+        <Button onClick={() => {
+          transactionStore.createTransaction(formik.values);
+          onClose();
+        }}>Add transaction</Button>
       </DialogActions>
     </Dialog>
   );
