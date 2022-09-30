@@ -15,6 +15,28 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiTypography: {
+      variants: [
+        {
+          props: { color: "disabled" },
+          style: {
+            color: "rgba(255, 255, 255, 0.5)",
+          },
+        },
+      ],
+    },
+    MuiFormControl: {
+      defaultProps: {
+        fullWidth: true,
+      },
+      styleOverrides: {
+        root: {
+          // minHeight: 48,
+          margin: "8px 0",
+          // alignItems: "baseline"
+        },
+      },
+    },
     MuiDrawer: {
       styleOverrides: {
         paper: {
@@ -23,20 +45,31 @@ const theme = createTheme({
       },
     },
     MuiButton: {
+      defaultProps: {
+        variant: "contained",
+        color: "primary",
+      },
       styleOverrides: {
         root: {
-          // backgroundColor: "#00A390",
           minHeight: 40,
         },
       },
     },
     MuiOutlinedInput: {
+      defaultProps: {
+        size: "small",
+        notched: true,
+      },
       styleOverrides: {
         root: {
-          border: "2px solid #fff",
-          height: 40,
           color: "#fff",
-          minWidth: 256,
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#fff",
+          },
+        },
+        notchedOutline: {
+          borderWidth: 2,
+          borderColor: "#fff",
         },
       },
     },
@@ -48,18 +81,15 @@ const theme = createTheme({
       },
     },
     MuiInputLabel: {
+      defaultProps: {
+        shrink: true,
+      },
       styleOverrides: {
         root: {
           color: "#fff",
-          top: "-8px",
           "&.Mui-focused": {
             color: "#fff",
           },
-        },
-        shrink: {
-          padding: "0 4px",
-          backgroundColor: "#0e564f",
-          top: 0,
         },
       },
     },

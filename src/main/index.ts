@@ -7,9 +7,10 @@ import { Module } from "./core/Module";
 import { CategoryController } from "./controllers/CategoryController";
 import { CategoryService } from "./services/CategoryService";
 import { FileService } from "./services/FileService";
+import { TransactionsController } from "./controllers/TransactionsController";
 
 Module.bootstrap({
-  controllers: [CategoryController],
+  controllers: [CategoryController, TransactionsController],
   services: [FileService, CategoryService],
 });
 
