@@ -31,7 +31,7 @@ export class TransactionsService implements OnInit {
   public createTransaction(data: CreateTransactionData): Transaction {
     const newTransaction: Transaction = {
       ...data,
-      id: `${this._transactions.value.length}_${+new Date(data.date)}`,
+      id: `${this._transactions.value.length}_${+new Date(+data.date)}`,
       categoryId: data.categoryId || null,
       subCategoryId: data.subCategoryId || null,
     };
