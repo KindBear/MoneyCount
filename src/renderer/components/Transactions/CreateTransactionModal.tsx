@@ -14,7 +14,7 @@ type TransactionFormValues = {
   type: TransactionTypes;
   // category: null,
   // subCategory: null,
-  description: string | null;
+  comment: string | null;
 };
 
 const CreateTransactionModal = () => {
@@ -27,10 +27,13 @@ const CreateTransactionModal = () => {
       type: TransactionTypes.OUTCOME,
       // category: null,
       // subCategory: null,
-      description: "",
+      comment: "",
     },
     onSubmit: (values) => {
-      transactionContext.createTransaction(values);
+      transactionContext.createTransaction({
+        ...values,
+        date: `${+new Date(values.date)}`,
+      });
       transactionContext.closeCreateModal();
     },
   });
@@ -99,11 +102,11 @@ const CreateTransactionModal = () => {
             {/*/>*/}
             <TextField
               fullWidth
-              id="description"
-              name="description"
+              id="comment"
+              name="comment"
               label="Description"
               placeholder="Description"
-              value={formik.values.description}
+              value={formik.values.comment}
               onChange={formik.handleChange}
               multiline
               rows={4}

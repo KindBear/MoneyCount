@@ -5,7 +5,7 @@ export enum TransactionTypes {
 
 export interface Transaction {
   id: string;
-  date: Date;
+  date: string;
   amount: number;
   type: TransactionTypes;
   categoryId: string | null;
@@ -14,7 +14,7 @@ export interface Transaction {
 }
 
 export type CreateTransactionData = {
-  date: Date;
+  date: string;
   amount: number;
   type: TransactionTypes;
   categoryId?: string;
@@ -28,7 +28,7 @@ export type DeleteTransactionData = {
 
 export type EditTransactionData = {
   id: string;
-  date?: Date;
+  date?: string;
   amount?: number;
   type?: TransactionTypes;
   categoryId?: string;
