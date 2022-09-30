@@ -3,7 +3,11 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Drawer from "./components/Drawer";
 import styled from "@emotion/styled";
 import Header from "./components/Header";
-import { NAV_ITEMS } from "./navItems";
+import GeneralSettingsPage from "./pages/GeneralSettingsPage";
+import CategoriesSettingsPage from "./pages/CategoriesSettingsPage";
+import MainPage from "./pages/MainPage";
+import TransactionsPage from "./pages/TransactionsPage";
+import SettingsPage from "./pages/SettingsPage";
 
 // tslint:disable-next-line
 const AppContainer = styled.div(({ theme }: any) => ({
@@ -24,11 +28,16 @@ const App = () => {
   return (
         <Router>
           <AppContainer>
-            <Header/>
+            <Header />
             <Drawer />
               <AppBody>
                 <Routes>
-                  {NAV_ITEMS.map((item) => <Route path={item.path} element={item.component}/> )}
+                  <Route path='/' element={<MainPage/>}/>
+                  <Route path='transactions' element={<TransactionsPage/>}/>
+                  <Route path='settings' element={<SettingsPage/>}>
+                    <Route index element={<GeneralSettingsPage/>}/>
+                    <Route path='categories' element={<CategoriesSettingsPage/>}/>
+                  </Route>
                 </Routes>
               </AppBody>
           </AppContainer>
