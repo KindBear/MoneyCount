@@ -14,20 +14,6 @@ const theme = createTheme({
       paper: "#00695c",
     },
   },
-  typography: {
-    fontFamily: [
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "\"Segoe UI\"",
-        "Roboto",
-        "\"Helvetica Neue\"",
-        "Arial",
-        "sans-serif",
-        "\"Apple Color Emoji\"",
-        "\"Segoe UI Emoji\"",
-        "\"Segoe UI Symbol\"",
-      ].join(","),
-  },
   components: {
     MuiDrawer: {
       styleOverrides: {
@@ -74,6 +60,31 @@ const theme = createTheme({
           padding: "0 4px",
           backgroundColor: "#0e564f",
           top: 0,
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          display: "none",
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#00463E",
+          color: "#fff",
+          minHeight: "32px",
+          padding: "0px 8px",
+          margin: "8px 8px 8px 0px",
+          textTransform: "none",
+          fontSize: "16px",
+
+          "&.Mui-selected": {
+            backgroundColor: "#00A390",
+            color: "#fff",
+          },
         },
       },
     },

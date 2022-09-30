@@ -6,23 +6,27 @@ import MainPage from "./pages/MainPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import SettingsPage from "./pages/SettingsPage";
 
-export const NAV_ITEMS = [
-  {
+export const NAV_ROUTES = [
+    {
     title: "General Info",
     icon: <HomeIcon />,
-    path: "/",
+    to: "/",
     component: <MainPage/>,
+    match: ["/"],
   },
   {
     title: "Transactions",
     icon: <ViewListSharpIcon />,
-    path: "/transactions",
+    to: "/transactions",
     component: <TransactionsPage/>,
+    match: ["/transactions"],
   },
   {
     title: "Settings",
     icon: <SettingsIcon />,
-    path: "/settings",
+    to: "/settings",
     component: <SettingsPage/>,
+    match: ["/settings", "/settings/categories"],
   },
-];
+  ];
+
