@@ -66,29 +66,29 @@ const theme = createTheme({
     MuiTabs: {
       styleOverrides: {
         indicator: {
-          display: 'none',
-        }
-      }
+          display: "none",
+        },
+      },
     },
     MuiTab: {
       styleOverrides: {
         root: {
-          backgroundColor: '#00463E',
-          color: '#fff',
-          minHeight: '32px',
-          padding: '0px 8px',
-          margin: '8px 8px 8px 0px',
-          textTransform: 'none',
-          fontSize: '16px',
+          backgroundColor: "#00463E",
+          color: "#fff",
+          minHeight: "32px",
+          padding: "0px 8px",
+          margin: "8px 8px 8px 0px",
+          textTransform: "none",
+          fontSize: "16px",
 
-          '&.Mui-selected': {
-            backgroundColor: '#00A390',
-            color: '#fff',
+          "&.Mui-selected": {
+            backgroundColor: "#00A390",
+            color: "#fff",
           },
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 });
 
 export default theme;

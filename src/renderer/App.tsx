@@ -32,11 +32,11 @@ const App = () => {
             <Drawer />
               <AppBody>
                 <Routes>
-                  <Route path='/' element={<MainPage/>}/>
-                  <Route path='transactions' element={<TransactionsPage/>}/>
-                  <Route path='settings' element={<SettingsPage/>}>
+                  <Route path="/" element={<MainPage/>}/>
+                  <Route path="transactions" element={<TransactionsPage/>}/>
+                  <Route path="settings" element={<SettingsPage/>}>
                     <Route index element={<GeneralSettingsPage/>}/>
-                    <Route path='categories' element={<CategoriesSettingsPage/>}/>
+                    <Route path="categories" element={<CategoriesSettingsPage/>}/>
                   </Route>
                 </Routes>
               </AppBody>

@@ -1,21 +1,21 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Tabs  from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import { Outlet} from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { useRouteMatch } from '../hooks/useRouteMatch';
+import React from "react";
+import Box from "@mui/material/Box";
+import Tabs  from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useRouteMatch } from "../hooks/useRouteMatch";
 
 const SettingsPage = () => {
-  const routeMatch = useRouteMatch(['/settings', '/settings/categories']);
+  const routeMatch = useRouteMatch(["/settings", "/settings/categories"]);
   const currentTab = routeMatch?.pattern?.path;
-  
+
   return (
     <>
-      <Box 
+      <Box
         sx={{
-          height: '48px',
-          paddingLeft: '8px',
+          height: "48px",
+          paddingLeft: "8px",
         }}
       >
         <Tabs value={currentTab}>
@@ -23,9 +23,9 @@ const SettingsPage = () => {
           <Tab label="Categories" value="/settings/categories" to="/settings/categories" component={Link} />
         </Tabs>
       </Box>
-      <Box 
+      <Box
         sx={{
-          height: 'calc(100vh - 112px)',
+          height: "calc(100vh - 112px)",
         }}
       >
         <Outlet />

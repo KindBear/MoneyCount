@@ -8,25 +8,25 @@ import SettingsPage from "./pages/SettingsPage";
 
 export const NAV_ROUTES = [
     {
-    title: 'General Info',
+    title: "General Info",
     icon: <HomeIcon />,
-    to: '/',
+    to: "/",
     component: <MainPage/>,
-    match: ['/'],
+    match: ["/"],
   },
   {
     title: "Transactions",
     icon: <ViewListSharpIcon />,
-    to: '/transactions',
+    to: "/transactions",
     component: <TransactionsPage/>,
-    match: ['/transactions'],
+    match: ["/transactions"],
   },
   {
     title: "Settings",
     icon: <SettingsIcon />,
-    to: '/settings',
+    to: "/settings",
     component: <SettingsPage/>,
-    match: ['/settings', '/settings/categories'],
-  }
+    match: ["/settings", "/settings/categories"],
+  },
   ];
-  
+
