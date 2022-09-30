@@ -1,5 +1,5 @@
 import React from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, SelectProps, Typography } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 
 type DropdownItem = {
@@ -9,17 +9,26 @@ type DropdownItem = {
 
 type DropdownProps = {
   items: DropdownItem[];
-  label: string;
-};
+  label?: string;
+  placeholder?: string;
+} & SelectProps;
 
-const Dropdown = ({ items, label }: DropdownProps) => {
+const Dropdown = ({ items, label, placeholder = "Select value", ...otherProps }: DropdownProps) => {
   return (
     <FormControl>
       <InputLabel>{label}</InputLabel>
       <Select
         variant="outlined"
         IconComponent={KeyboardArrowDown}
-        label="Period"
+        fullWidth
+        label={label}
+        renderValue={(value: string) => {
+          if (value === "default") {
+            return <Typography color="disabled">{placeholder}</Typography>;
+          }
+          return items.find(item => item.value === value).label;
+        }}
+        {...otherProps}
       >
         {items.map((item) => (
           <MenuItem

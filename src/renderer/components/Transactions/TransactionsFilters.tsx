@@ -1,31 +1,34 @@
 import React from "react";
-import { Button } from "@mui/material";
-import { Periods } from "../../../shared/types/Periods";
+import { Box, Button, SelectChangeEvent } from "@mui/material";
 import Dropdown from "../Dropdown";
-import { FlexContainer } from "../StyleMui/FlexContainer";
+import { PERIODS } from "../../constants/periods";
 
-const TransactionsFilters = () => {
-  // TODO: move periods someone else
-  const periods = [
-    { label: "This Month", value: Periods.THIS_MONTH },
-    { label: "Last Month", value: Periods.LAST_MONTH },
-    { label: "This Quarter", value: Periods.THIS_QUARTER },
-    { label: "Last Quarter", value: Periods.LAST_QUARTER },
-    { label: "This Year", value: Periods.THIS_YEAR },
-    { label: "Custom", value: Periods.CUSTOM },
-  ];
+type TransactionsFiltersProps = {
+  onOpenModal: () => void;
+  period: string;
+  changePeriod: (event: SelectChangeEvent) => void;
+};
 
+const TransactionsFilters = ({ onOpenModal, period, changePeriod }: TransactionsFiltersProps) => {
   return (
-    <FlexContainer
-      direction="row"
-      justify="space-between"
-      padding="8px"
-    >
-      <Dropdown items={periods} label="Period" />
-      <Button variant="contained" color="primary">
+    <Box sx={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    }}>
+      <Box sx={{ width: 256 }}>
+        <Dropdown
+          items={PERIODS}
+          label="Period"
+          value={period}
+          onChange={changePeriod}
+          placeholder="Select period"
+        />
+      </Box>
+      <Button onClick={onOpenModal}>
         Add Transaction
       </Button>
-    </FlexContainer>
+    </Box>
   );
 };
 
