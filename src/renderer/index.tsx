@@ -11,12 +11,14 @@ import TransactionsContext, { transactionsStoreInstance } from "./contexts/Trans
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
+// TODO: Create Global context
+
 root.render(
   <TransactionsContext.Provider value={transactionsStoreInstance}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ThemeProvider theme={theme}>
-        <App/>
+        <App />
       </ThemeProvider>
-    </LocalizationProvider>,
+    </LocalizationProvider>
   </TransactionsContext.Provider>,
 );

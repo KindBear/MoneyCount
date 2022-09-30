@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Box, Button, SelectChangeEvent } from "@mui/material";
 import Dropdown from "../Dropdown";
 import { PERIODS } from "../../constants/periods";
+import transactionsContext from "../../contexts/TransactionsContext";
 
-type TransactionsFiltersProps = {
-  onOpenModal: () => void;
-  period: string;
-  changePeriod: (event: SelectChangeEvent) => void;
-};
+const TransactionsFilters = () => {
+  const [period, setPeriod] = useState<string>("default");
+  const { openCreateModal } = useContext(transactionsContext);
 
-const TransactionsFilters = ({ onOpenModal, period, changePeriod }: TransactionsFiltersProps) => {
+  const changePeriod = (event: SelectChangeEvent) => {
+    setPeriod(event.target.value);
+  };
+
   return (
     <Box sx={{
       display: "flex",
@@ -25,7 +27,7 @@ const TransactionsFilters = ({ onOpenModal, period, changePeriod }: Transactions
           placeholder="Select period"
         />
       </Box>
-      <Button onClick={onOpenModal}>
+      <Button onClick={openCreateModal}>
         Add Transaction
       </Button>
     </Box>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
+import { Typography } from "@mui/material";
 import { observer } from "mobx-react";
 import transactionsContext from "../../contexts/TransactionsContext";
-import { Typography } from "@mui/material";
 
 const TransactionsTable = () => {
   const transactionStore = useContext(transactionsContext);

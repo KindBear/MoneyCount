@@ -1,22 +1,24 @@
 import React, { useContext } from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import { observer } from "mobx-react";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import { useFormik } from "formik";
-import CreateTransactionForm, { TransactionFormValues } from "../../forms/CreateTransactionForm";
 import transactionsContext from "../../contexts/TransactionsContext";
+import { TRANSACTION_TYPES } from "../../constants/transactionTypes";
 import { TransactionTypes } from "../../../shared/types/Transactions";
+import Dropdown from "../Dropdown";
 
-type CreateTransactionModalProps = {
-  open: boolean;
-  onClose: () => void;
-  // onSubmit: () => void;
+type TransactionFormValues = {
+  date: Date;
+  amount: number;
+  type: TransactionTypes;
+  // category: null,
+  // subCategory: null,
+  description: string | null;
 };
 
-const CreateTransactionModal = ({
-  open,
-  onClose,
-  // onSubmit,
-                                }: CreateTransactionModalProps) => {
-  const transactionStore = useContext(transactionsContext);
+const CreateTransactionModal = () => {
+  const transactionContext = useContext(transactionsContext);
 
   const formik = useFormik<TransactionFormValues>({
     initialValues: {
@@ -27,24 +29,94 @@ const CreateTransactionModal = ({
       // subCategory: null,
       description: "",
     },
-    onSubmit: () => {},
+    onSubmit: (values) => {
+      transactionContext.createTransaction(values);
+      transactionContext.closeCreateModal();
+    },
   });
 
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Add new transaction</DialogTitle>
-      <DialogContent>
-        <CreateTransactionForm formik={formik} />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={() => {
-          transactionStore.createTransaction(formik.values);
-          onClose();
-        }}>Add transaction</Button>
-      </DialogActions>
+    <Dialog
+      open={transactionContext.isCreateModalOpened}
+      onClose={transactionContext.closeCreateModal}
+    >
+      <form onSubmit={formik.handleSubmit}>
+        <DialogTitle>Add new transaction</DialogTitle>
+        <DialogContent>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+              flexDirection: "column",
+              width: "540px",
+              paddingTop: "8px",
+            }}
+          >
+            <DatePicker
+              label="Date"
+              value={formik.values.date}
+              onChange={(date) => {
+                formik.setFieldValue("date", date);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  id="date"
+                  name="date"
+                  fullWidth
+                  {...params}
+                />
+              )}
+            />
+            <TextField
+              fullWidth
+              id="amount"
+              name="amount"
+              label="Amount"
+              value={formik.values.amount}
+              onChange={formik.handleChange}
+              placeholder="Enter amount"
+            />
+            <Dropdown
+              items={TRANSACTION_TYPES}
+              label="Type"
+              name="type"
+              value={formik.values.type}
+              onChange={formik.handleChange}
+            />
+            {/*<Dropdown */}
+            {/*  items={TRANSACTION_TYPES} */}
+            {/*  label="Category" */}
+            {/*  name="category" */}
+            {/*  value={formik.values.category}*/}
+            {/*  onChange={formik.handleChange}*/}
+            {/*/>*/}
+            {/*<Dropdown */}
+            {/*  items={TRANSACTION_TYPES} */}
+            {/*  label="Subcategory" */}
+            {/*  name="subcategory" */}
+            {/*  value={formik.values.subcategory}*/}
+            {/*  onChange={formik.handleChange}*/}
+            {/*/>*/}
+            <TextField
+              fullWidth
+              id="description"
+              name="description"
+              label="Description"
+              placeholder="Description"
+              value={formik.values.description}
+              onChange={formik.handleChange}
+              multiline
+              rows={4}
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={transactionContext.closeCreateModal}>Cancel</Button>
+          <Button type="submit">Add transaction</Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 };
 
-export default CreateTransactionModal;
+export default observer(CreateTransactionModal);

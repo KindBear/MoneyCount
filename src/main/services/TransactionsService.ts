@@ -23,6 +23,9 @@ export class TransactionsService implements OnInit {
     if (categoriesJSON) {
       this._transactions.value = JSON.parse(categoriesJSON);
     }
+    this._transactions.subscribe((value) => {
+      this.fileService.writeFile(this.fileName, JSON.stringify(value));
+    });
   }
 
   public createTransaction(data: CreateTransactionData): Transaction {
@@ -33,13 +36,11 @@ export class TransactionsService implements OnInit {
       subCategoryId: data.subCategoryId || null,
     };
     this._transactions.value = [...this._transactions.value, newTransaction];
-    this.saveChanges();
     return newTransaction;
   }
 
   public deleteTransaction(id: string): void {
     this._transactions.value = this._transactions.value.filter(transaction => transaction.id !== id);
-    this.saveChanges();
   }
 
   public updateTransaction({ id, ...otherData }: EditTransactionData): Transaction {
@@ -54,11 +55,6 @@ export class TransactionsService implements OnInit {
       return transaction;
     });
 
-    this.saveChanges();
     return this._transactions.value.find(transaction => transaction.id === id);
-  }
-
-  public saveChanges() {
-    this.fileService.writeFile(this.fileName, JSON.stringify(this._transactions));
   }
 }
