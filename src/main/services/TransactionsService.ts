@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { FileService } from "./FileService";
 import { OnInit } from "../core/onInit";
 import { service } from "../core/service";
@@ -31,7 +32,7 @@ export class TransactionsService implements OnInit {
   public createTransaction(data: CreateTransactionData): Transaction {
     const newTransaction: Transaction = {
       ...data,
-      id: `${this._transactions.value.length}_${+new Date(+data.date)}`,
+      id: uuidv4(),
       categoryId: data.categoryId || null,
       subCategoryId: data.subCategoryId || null,
     };

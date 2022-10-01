@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { Category } from "../../shared/types/Category";
 import { FileService } from "./FileService";
 import { OnInit } from "../core/onInit";
@@ -31,7 +32,7 @@ export class CategoryService implements OnInit {
 
   public createCategory(name: string): Category {
     const newCategory: Category = {
-      id: `${this._categories.value.length}_${name}`,
+      id: uuidv4(),
       name,
       subcategories: [],
     };

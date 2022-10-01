@@ -8,10 +8,20 @@ import { CategoryController } from "./controllers/CategoryController";
 import { CategoryService } from "./services/CategoryService";
 import { FileService } from "./services/FileService";
 import { TransactionsController } from "./controllers/TransactionsController";
+import { AccountService } from "./services/AccountService";
+import { AccountsController } from "./controllers/AccountsController";
 
 Module.bootstrap({
-  controllers: [CategoryController, TransactionsController],
-  services: [FileService, CategoryService],
+  controllers: [
+    CategoryController,
+    TransactionsController,
+    AccountsController,
+  ],
+  services: [
+    FileService,
+    CategoryService,
+    AccountService,
+  ],
 });
 
 class App {
