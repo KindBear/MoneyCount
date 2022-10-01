@@ -28,10 +28,7 @@ class TransactionsStore {
 
   public async createTransaction(data: CreateTransactionData) {
     await createTransaction(data);
-
-    runInAction(() => {
-      this.getTransactions();
-    });
+    this.getTransactions();
   }
 }
 

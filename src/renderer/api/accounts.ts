@@ -8,7 +8,7 @@ enum AccountsChannel {
   DELETE = "accounts/delete",
 }
 
-export function getAccountss(): Promise<Account[]> {
+export function getAccounts(): Promise<Account[]> {
   return api<undefined, Account[]>(AccountsChannel.GET);
 }
 
