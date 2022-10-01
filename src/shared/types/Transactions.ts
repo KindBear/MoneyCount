@@ -8,6 +8,7 @@ export interface Transaction {
   date: string;
   amount: number;
   type: TransactionTypes;
+  accountId: string;
   categoryId: string | null;
   subCategoryId: string | null;
   comment?: string;
@@ -17,6 +18,7 @@ export type CreateTransactionData = {
   date: string;
   amount: number;
   type: TransactionTypes;
+  accountId: string;
   categoryId?: string;
   subCategoryId?: string;
   comment?: string;
@@ -31,6 +33,7 @@ export type EditTransactionData = {
   date?: string;
   amount?: number;
   type?: TransactionTypes;
+  accountId?: string;
   categoryId?: string;
   subCategoryId?: string;
   comment?: string;

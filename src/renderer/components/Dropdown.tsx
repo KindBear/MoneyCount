@@ -2,7 +2,7 @@ import React from "react";
 import { FormControl, InputLabel, MenuItem, Select, SelectProps, Typography } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 
-type DropdownItem = {
+export type DropdownItem = {
   label: string;
   value: string;
 };

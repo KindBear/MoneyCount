@@ -2,8 +2,13 @@ import { v4 as uuidv4 } from "uuid";
 import { FileService } from "./FileService";
 import { OnInit } from "../core/onInit";
 import { service } from "../core/service";
-import { CreateTransactionData, EditTransactionData, Transaction } from "../../shared/types/Transactions";
+import {
+  CreateTransactionData,
+  EditTransactionData,
+  Transaction,
+} from "../../shared/types/Transactions";
 import { Observable } from "../core/Observable";
+import { AccountService } from "./AccountService";
 
 @service()
 export class TransactionsService implements OnInit {
@@ -12,6 +17,7 @@ export class TransactionsService implements OnInit {
 
   constructor(
     private fileService: FileService,
+    private accountService: AccountService,
   ) {
   }
 
@@ -37,6 +43,9 @@ export class TransactionsService implements OnInit {
       subCategoryId: data.subCategoryId || null,
     };
     this._transactions.value = [...this._transactions.value, newTransaction];
+
+    this.accountService.changeBalance(data.accountId, data.type, data.amount);
+
     return newTransaction;
   }
 

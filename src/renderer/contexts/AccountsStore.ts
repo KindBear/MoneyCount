@@ -1,6 +1,7 @@
 import { Account, CreateAccountData } from "../../shared/types/Account";
 import { makeAutoObservable, runInAction } from "mobx";
 import { createAccount, getAccounts } from "../api/accounts";
+import { DropdownItem } from "../components/Dropdown";
 
 class AccountsStore {
   public accounts: Account[] = [];
@@ -8,6 +9,15 @@ class AccountsStore {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  public get accountsItems(): DropdownItem[] {
+    return this.accounts.map((account) => {
+      return {
+        value: account.id,
+        label: account.name,
+      };
+    });
   }
 
   public openCreateModal = () => {
