@@ -1,17 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableHead, TablePagination, TableRow,
+  TableHead,
+  TablePagination,
+  TableRow,
 } from "@mui/material";
 import { observer } from "mobx-react";
-import transactionsContext from "../../contexts/TransactionsContext";
+import { useStores } from "../../hooks/useStores";
 
 const TransactionsTable = () => {
-  const transactionStore = useContext(transactionsContext);
+  const {transactionStore} = useStores();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
