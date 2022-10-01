@@ -4,6 +4,8 @@ import { OnInit } from "../core/onInit";
 import { service } from "../core/service";
 import { Observable } from "../core/Observable";
 import { Account, CreateAccountData, EditAccountData } from "../../shared/types/Account";
+import { TransactionTypes } from "../../shared/types/Transactions";
+import { roundAmount } from "../../shared/utils/roundAmount";
 
 @service()
 export class AccountService implements OnInit {
@@ -56,5 +58,27 @@ export class AccountService implements OnInit {
     });
 
     return this._accounts.value.find(category => category.id === id);
+  }
+
+  public changeBalance(id: string, type: TransactionTypes, amount: number): void {
+    let balanceDelta = 0;
+
+    if (type === TransactionTypes.INCOME) {
+      balanceDelta = amount;
+    }
+    if (type === TransactionTypes.OUTCOME) {
+      balanceDelta = amount * -1;
+    }
+
+    this._accounts.value = this._accounts.value.map((account) => {
+      if (account.id === id) {
+        return {
+          ...account,
+          balance: roundAmount(account.balance + Number(balanceDelta)),
+        };
+      }
+
+      return account;
+    });
   }
 }

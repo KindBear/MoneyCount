@@ -1,6 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { CreateTransactionData, Transaction } from "../../shared/types/Transactions";
 import { createTransaction, getTransactions } from "../api/transactions";
+import accountStore from "./AccountsStore";
 
 class TransactionsStore {
   public transactions: Transaction[] = [];
@@ -28,7 +29,9 @@ class TransactionsStore {
 
   public async createTransaction(data: CreateTransactionData) {
     await createTransaction(data);
+
     this.getTransactions();
+    accountStore.getAccounts();
   }
 }
 

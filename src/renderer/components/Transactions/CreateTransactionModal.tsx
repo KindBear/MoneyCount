@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -12,19 +12,21 @@ type TransactionFormValues = {
   date: Date;
   amount: number;
   type: TransactionTypes;
+  accountId: string;
   // category: null,
   // subCategory: null,
   comment: string | null;
 };
 
 const CreateTransactionModal = () => {
-  const {transactionStore} = useStores();
+  const {transactionStore, accountStore} = useStores();
 
   const formik = useFormik<TransactionFormValues>({
     initialValues: {
-      date: null,
-      amount: null,
+      date: undefined,
+      amount: undefined,
       type: TransactionTypes.OUTCOME,
+      accountId: "",
       // category: null,
       // subCategory: null,
       comment: "",
@@ -37,6 +39,10 @@ const CreateTransactionModal = () => {
       transactionStore.closeCreateModal();
     },
   });
+
+  useEffect(() => {
+    accountStore.getAccounts();
+  }, []);
 
   return (
     <Dialog
@@ -69,6 +75,13 @@ const CreateTransactionModal = () => {
                   {...params}
                 />
               )}
+            />
+            <Dropdown
+              items={accountStore.accountsItems}
+              label="Account"
+              name="accountId"
+              value={formik.values.accountId}
+              onChange={formik.handleChange}
             />
             <TextField
               fullWidth
