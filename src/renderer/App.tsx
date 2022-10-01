@@ -8,6 +8,7 @@ import CategoriesSettingsPage from "./pages/CategoriesSettingsPage";
 import MainPage from "./pages/MainPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import SettingsPage from "./pages/SettingsPage";
+import AccountsPage from "./pages/AccountsPage";
 
 // tslint:disable-next-line
 const AppContainer = styled.div(({ theme }: any) => ({
@@ -34,6 +35,7 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<MainPage/>}/>
                   <Route path="transactions" element={<TransactionsPage/>}/>
+                  <Route path="accounts" element={<AccountsPage/>}/>
                   <Route path="settings" element={<SettingsPage/>}>
                     <Route index element={<GeneralSettingsPage/>}/>
                     <Route path="categories" element={<CategoriesSettingsPage/>}/>

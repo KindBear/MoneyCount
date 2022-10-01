@@ -23,6 +23,18 @@ const theme = createTheme({
             color: "rgba(255, 255, 255, 0.5)",
           },
         },
+        {
+          props: { color: "positive" },
+          style: (props) => ({
+            color: props.theme.palette.success.main,
+          }),
+        },
+        {
+          props: { color: "negative" },
+          style: (props) => ({
+            color: props.theme.palette.error.main,
+          }),
+        },
       ],
     },
     MuiFormControl: {

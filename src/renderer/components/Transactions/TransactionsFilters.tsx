@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, SelectChangeEvent } from "@mui/material";
 import Dropdown from "../Dropdown";
 import { PERIODS } from "../../constants/periods";
-import transactionsContext from "../../contexts/TransactionsContext";
+import { useStores } from "../../hooks/useStores";
 
 const TransactionsFilters = () => {
   const [period, setPeriod] = useState<string>("default");
-  const { openCreateModal } = useContext(transactionsContext);
+  const {transactionStore} = useStores();
 
   const changePeriod = (event: SelectChangeEvent) => {
     setPeriod(event.target.value);
@@ -27,7 +27,7 @@ const TransactionsFilters = () => {
           placeholder="Select period"
         />
       </Box>
-      <Button onClick={openCreateModal}>
+      <Button onClick={transactionStore.openCreateModal}>
         Add Transaction
       </Button>
     </Box>

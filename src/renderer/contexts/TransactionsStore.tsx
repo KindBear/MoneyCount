@@ -1,5 +1,4 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { createContext } from "react";
 import { CreateTransactionData, Transaction } from "../../shared/types/Transactions";
 import { createTransaction, getTransactions } from "../api/transactions";
 
@@ -29,15 +28,9 @@ class TransactionsStore {
 
   public async createTransaction(data: CreateTransactionData) {
     await createTransaction(data);
-
-    runInAction(() => {
-      this.getTransactions();
-    });
+    this.getTransactions();
   }
 }
 
-export const transactionsStoreInstance = new TransactionsStore();
-const TransactionsContext = createContext<TransactionsStore>(transactionsStoreInstance);
-
-export default TransactionsContext;
+export default new TransactionsStore();
 

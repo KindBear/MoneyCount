@@ -6,7 +6,7 @@ import { NAV_ROUTES } from "../navRoutes";
 import { useRouteMatch } from "../hooks/useRouteMatch";
 
 const Drawer = () => {
-  const routeMatch = useRouteMatch(["/", "/transactions", "/settings/categories", "/settings"]);
+  const routeMatch = useRouteMatch(["/", "/transactions", "/settings/categories", "/settings", "/accounts"]);
   const currentPath = routeMatch?.pattern?.path;
 
   return (

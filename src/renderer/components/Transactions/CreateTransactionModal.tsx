@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { observer } from "mobx-react";
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useFormik } from "formik";
-import transactionsContext from "../../contexts/TransactionsContext";
 import { TRANSACTION_TYPES } from "../../constants/transactionTypes";
 import { TransactionTypes } from "../../../shared/types/Transactions";
 import Dropdown from "../Dropdown";
+import { useStores } from "../../hooks/useStores";
 
 type TransactionFormValues = {
   date: Date;
@@ -18,7 +18,7 @@ type TransactionFormValues = {
 };
 
 const CreateTransactionModal = () => {
-  const transactionContext = useContext(transactionsContext);
+  const {transactionStore} = useStores();
 
   const formik = useFormik<TransactionFormValues>({
     initialValues: {
@@ -30,18 +30,18 @@ const CreateTransactionModal = () => {
       comment: "",
     },
     onSubmit: (values) => {
-      transactionContext.createTransaction({
+      transactionStore.createTransaction({
         ...values,
         date: `${+new Date(values.date)}`,
       });
-      transactionContext.closeCreateModal();
+      transactionStore.closeCreateModal();
     },
   });
 
   return (
     <Dialog
-      open={transactionContext.isCreateModalOpened}
-      onClose={transactionContext.closeCreateModal}
+      open={transactionStore.isCreateModalOpened}
+      onClose={transactionStore.closeCreateModal}
     >
       <form onSubmit={formik.handleSubmit}>
         <DialogTitle>Add new transaction</DialogTitle>
@@ -114,7 +114,7 @@ const CreateTransactionModal = () => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={transactionContext.closeCreateModal}>Cancel</Button>
+          <Button onClick={transactionStore.closeCreateModal}>Cancel</Button>
           <Button type="submit">Add transaction</Button>
         </DialogActions>
       </form>
