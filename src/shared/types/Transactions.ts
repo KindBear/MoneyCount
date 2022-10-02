@@ -9,8 +9,8 @@ export interface Transaction {
   amount: number;
   type: TransactionTypes;
   accountId: string;
-  categoryId: string | null;
-  subCategoryId: string | null;
+  // categoryId: string | null;
+  // subCategoryId: string | null;
   comment?: string;
 }
 

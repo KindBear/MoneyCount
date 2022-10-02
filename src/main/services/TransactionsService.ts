@@ -39,8 +39,8 @@ export class TransactionsService implements OnInit {
     const newTransaction: Transaction = {
       ...data,
       id: uuidv4(),
-      categoryId: data.categoryId || null,
-      subCategoryId: data.subCategoryId || null,
+      // categoryId: data.categoryId || null,
+      // subCategoryId: data.subCategoryId || null,
     };
     this._transactions.value = [...this._transactions.value, newTransaction];
 

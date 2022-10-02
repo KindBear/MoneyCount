@@ -23,7 +23,7 @@ const CreateTransactionModal = () => {
 
   const formik = useFormik<TransactionFormValues>({
     initialValues: {
-      date: undefined,
+      date: new Date(),
       amount: undefined,
       type: TransactionTypes.OUTCOME,
       accountId: "",
