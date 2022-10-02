@@ -22,10 +22,20 @@ class AccountsStore {
 
   public openCreateModal = () => {
     this.isCreateModalOpened = true;
-  }
+  };
 
   public closeCreateModal = () => {
     this.isCreateModalOpened = false;
+  };
+
+  public account = (id: string | undefined): Account => {
+    if (id) {
+      return this.accounts.find(account => {
+        return account.id === id;
+      });
+    }
+
+    return {} as Account;
   }
 
   public async getAccounts() {
