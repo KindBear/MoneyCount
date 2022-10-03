@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, TextField, Box, MenuItem, IconButton } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 
 const CategoriesSettingsPage = () => {
