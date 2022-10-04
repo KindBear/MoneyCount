@@ -27,23 +27,23 @@ const AppBody = styled.div({
 
 const App = () => {
   return (
-        <Router>
-          <AppContainer>
-            <Header />
-            <Drawer />
-              <AppBody>
-                <Routes>
-                  <Route path="/" element={<MainPage/>}/>
-                  <Route path="transactions" element={<TransactionsPage/>}/>
-                  <Route path="accounts" element={<AccountsPage/>}/>
-                  <Route path="settings" element={<SettingsPage/>}>
-                    <Route index element={<GeneralSettingsPage/>}/>
-                    <Route path="categories" element={<CategoriesSettingsPage/>}/>
-                  </Route>
-                </Routes>
-              </AppBody>
-          </AppContainer>
-        </Router>
+    <Router>
+      <AppContainer>
+        <Header />
+        <Drawer />
+        <AppBody>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="transactions" element={<TransactionsPage />} />
+            <Route path="accounts" element={<AccountsPage />} />
+            <Route path="settings" element={<SettingsPage />}>
+              <Route index element={<GeneralSettingsPage />} />
+              <Route path="categories" element={<CategoriesSettingsPage />} />
+            </Route>
+          </Routes>
+        </AppBody>
+      </AppContainer>
+    </Router>
   );
 };
 

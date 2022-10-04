@@ -5,4 +5,5 @@ import AccountsStore from "./AccountsStore";
 export const StoresContext = React.createContext({
   transactionStore: TransactionStore,
   accountStore: AccountsStore,
+  // categoriesStore: CategoriesStore;
 });

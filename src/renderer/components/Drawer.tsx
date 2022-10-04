@@ -6,24 +6,26 @@ import { NAV_ROUTES } from "../navRoutes";
 import { useRouteMatch } from "../hooks/useRouteMatch";
 
 const Drawer = () => {
-  const routeMatch = useRouteMatch(["/", "/transactions", "/settings/categories", "/settings", "/accounts"]);
+  const routeMatch = useRouteMatch([
+    "/",
+    "/transactions",
+    "/settings/categories",
+    "/settings",
+    "/accounts",
+  ]);
   const currentPath = routeMatch?.pattern?.path;
 
   return (
     <StyledDrawer variant="permanent">
-      {
-        NAV_ROUTES.map((item) => {
-          const {title, icon, to, match} = item;
+      {NAV_ROUTES.map((item) => {
+        const { title, icon, to, match } = item;
 
-          return (
-            <Link key={title} to={to}>
-              <MenuButton active={match.includes(currentPath)}>
-                {icon}
-              </MenuButton>
-            </Link>
-          );
-        })
-      }
+        return (
+          <Link key={title} to={to}>
+            <MenuButton active={match.includes(currentPath)}>{icon}</MenuButton>
+          </Link>
+        );
+      })}
     </StyledDrawer>
   );
 };
