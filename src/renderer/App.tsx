@@ -4,7 +4,7 @@ import Drawer from "./components/Drawer";
 import styled from "@emotion/styled";
 import Header from "./components/Header";
 import GeneralSettingsPage from "./pages/GeneralSettingsPage";
-import CategoriesFilters from "./components/Categories/CategoriesFilters";
+import CategoriesSettingsPage from "./components/Categories/CategoriesSettingsPage";
 import MainPage from "./pages/MainPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import SettingsPage from "./pages/SettingsPage";
@@ -38,7 +38,7 @@ const App = () => {
             <Route path="accounts" element={<AccountsPage />} />
             <Route path="settings" element={<SettingsPage />}>
               <Route index element={<GeneralSettingsPage />} />
-              <Route path="categories" element={<CategoriesFilters />} />
+              <Route path="categories" element={<CategoriesSettingsPage />} />
             </Route>
           </Routes>
         </AppBody>

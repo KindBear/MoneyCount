@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -12,7 +12,12 @@ import { useStores } from "../../hooks/useStores";
 import { observer } from "mobx-react";
 
 const CreateCategoriesModal = () => {
+  const [category, setCategory] = useState("");
   const { categoriesStore } = useStores();
+  const handleSubmit = () => {
+    categoriesStore.createCategory(category);
+    categoriesStore.closeCreateModal();
+  };
 
   return (
     <Dialog
@@ -40,6 +45,10 @@ const CreateCategoriesModal = () => {
           }}
         >
           <TextField
+            value={category}
+            onChange={(event) => {
+              setCategory(event.target.value);
+            }}
             fullWidth
             placeholder="Category name"
             variant="outlined"
@@ -50,7 +59,9 @@ const CreateCategoriesModal = () => {
             }}
           >
             <Button onClick={categoriesStore.closeCreateModal}>Cancel</Button>
-            <Button type="submit">Add Category</Button>
+            <Button type="submit" onClick={handleSubmit}>
+              Add Category
+            </Button>
           </DialogActions>
         </Box>
       </DialogContent>

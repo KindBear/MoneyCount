@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import { createCategory } from "../api/categories";
 
 class CategoriesStore {
   public isCreateModalOpened: boolean = false;
@@ -14,6 +15,10 @@ class CategoriesStore {
   public closeCreateModal = () => {
     this.isCreateModalOpened = false;
   };
+
+  public async createCategory(name: string) {
+    createCategory(name);
+  }
 }
 
 export default new CategoriesStore();
