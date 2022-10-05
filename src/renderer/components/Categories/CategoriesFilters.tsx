@@ -1,8 +1,11 @@
 import React from "react";
 import { Box, Button, TextField } from "@mui/material";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
+import { useStores } from "../../hooks/useStores";
+import { observer } from "mobx-react";
 
-const CategoriesSettingsPage = () => {
+const CategoriesFilters = () => {
+  const { categoriesStore } = useStores();
   return (
     <Box
       sx={{
@@ -32,11 +35,11 @@ const CategoriesSettingsPage = () => {
           alignItems: "center",
         }}
       >
-        <Button>Add Category</Button>
+        <Button onClick={categoriesStore.openCreateModal}>Add Category</Button>
         <Button>Add SubCategory</Button>
       </Box>
     </Box>
   );
 };
 
-export default CategoriesSettingsPage;
+export default observer(CategoriesFilters);
