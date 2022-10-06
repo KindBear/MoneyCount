@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Box,
   Button,
   Dialog,
   DialogActions,
@@ -14,6 +13,7 @@ import { observer } from "mobx-react";
 const CreateCategoriesModal = () => {
   const [category, setCategory] = useState("");
   const { categoriesStore } = useStores();
+
   const handleSubmit = () => {
     categoriesStore.createCategory(category);
     categoriesStore.closeCreateModal();
@@ -24,46 +24,28 @@ const CreateCategoriesModal = () => {
       open={categoriesStore.isCreateModalOpened}
       onClose={categoriesStore.closeCreateModal}
     >
-      <DialogTitle
-        sx={{
-          padding: "16px 24px 8px",
-        }}
-      >
-        Add Category
-      </DialogTitle>
-      <DialogContent
-        sx={{
-          padding: "0px 16px 0px 16px",
-        }}
-      >
-        <Box
+      <DialogTitle>Add Category</DialogTitle>
+      <DialogContent>
+        <TextField
+          value={category}
+          onChange={(event) => {
+            setCategory(event.target.value);
+          }}
+          fullWidth
+          placeholder="Category name"
+          variant="outlined"
           sx={{
-            display: "flex",
-            justifyContent: "space-around",
-            flexDirection: "column",
             width: "540px",
           }}
+        ></TextField>
+        <DialogActions
+          sx={{
+            padding: "0px 0px 0px 8px",
+          }}
         >
-          <TextField
-            value={category}
-            onChange={(event) => {
-              setCategory(event.target.value);
-            }}
-            fullWidth
-            placeholder="Category name"
-            variant="outlined"
-          ></TextField>
-          <DialogActions
-            sx={{
-              padding: "8px 0px 8px 0px",
-            }}
-          >
-            <Button onClick={categoriesStore.closeCreateModal}>Cancel</Button>
-            <Button type="submit" onClick={handleSubmit}>
-              Add Category
-            </Button>
-          </DialogActions>
-        </Box>
+          <Button onClick={categoriesStore.closeCreateModal}>Cancel</Button>
+          <Button onClick={handleSubmit}>Add Category</Button>
+        </DialogActions>
       </DialogContent>
     </Dialog>
   );

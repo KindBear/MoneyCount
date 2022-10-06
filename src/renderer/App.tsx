@@ -4,7 +4,7 @@ import Drawer from "./components/Drawer";
 import styled from "@emotion/styled";
 import Header from "./components/Header";
 import GeneralSettingsPage from "./pages/GeneralSettingsPage";
-import CategoriesSettingsPage from "./components/Categories/CategoriesSettingsPage";
+import CategoriesSettingsPage from "./pages/CategoriesSettingsPage";
 import MainPage from "./pages/MainPage";
 import TransactionsPage from "./pages/TransactionsPage";
 import SettingsPage from "./pages/SettingsPage";
