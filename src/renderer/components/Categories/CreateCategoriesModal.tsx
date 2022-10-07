@@ -37,7 +37,7 @@ const CreateCategoriesModal = () => {
           sx={{
             width: "540px",
           }}
-        ></TextField>
+        />
         <DialogActions
           sx={{
             padding: "0px 0px 0px 8px",
