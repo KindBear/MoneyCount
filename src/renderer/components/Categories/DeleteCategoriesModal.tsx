@@ -15,7 +15,7 @@ const DeleteCategoriesModal = () => {
   const category = categoriesStore.category(categoriesStore.deleteCategoriesId);
 
   const deleteCategory = () => {
-    categoriesStore.openDeleteModal(category.id);
+    categoriesStore.deleteCategory(category.id);
     categoriesStore.closeDeleteModal();
   };
 
@@ -27,9 +27,7 @@ const DeleteCategoriesModal = () => {
       <DialogTitle>Delete category</DialogTitle>
       <DialogContent>
         <Typography>Are you sure you want to delete category?</Typography>
-
-        <Typography>categoryId: </Typography>
-        {/*<Typography>subCategoryId: </Typography>*/}
+        <Typography>Category name: {category.name} </Typography>
       </DialogContent>
       <DialogActions>
         <Button onClick={categoriesStore.closeDeleteModal}>Cancel</Button>

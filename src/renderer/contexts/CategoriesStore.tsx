@@ -1,12 +1,18 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { createCategory, deleteCategory } from "../api/categories";
-import { getCategories } from "../api/categories";
+import {
+  createCategory,
+  deleteCategory,
+  getCategories,
+  updateCategory,
+} from "../api/categories";
+
 import { Category } from "../../shared/types/Category";
 
 class CategoriesStore {
   public categories: Category[] = [];
   public isCreateModalOpened: boolean = false;
   public deleteCategoriesId: string | null = null;
+  public editCategoriesId: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -26,6 +32,14 @@ class CategoriesStore {
 
   public closeDeleteModal = () => {
     this.deleteCategoriesId = null;
+  };
+
+  public openEditModal = (id: string) => {
+    this.editCategoriesId = id;
+  };
+
+  public closeEditModal = () => {
+    this.editCategoriesId = null;
   };
 
   public category(id: string): Category {
@@ -51,6 +65,12 @@ class CategoriesStore {
 
   public async deleteCategory(id: string) {
     await deleteCategory(id);
+
+    this.getCategories();
+  }
+
+  public async updateCategory(id: string, name: string) {
+    await updateCategory(id, name);
 
     this.getCategories();
   }
