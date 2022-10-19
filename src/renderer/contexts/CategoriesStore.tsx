@@ -12,7 +12,6 @@ class CategoriesStore {
   public categories: Category[] = [];
   public isCreateModalOpened: boolean = false;
   public deleteCategoriesId: string | null = null;
-  public editCategoriesId: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -32,14 +31,6 @@ class CategoriesStore {
 
   public closeDeleteModal = () => {
     this.deleteCategoriesId = null;
-  };
-
-  public openEditModal = (id: string) => {
-    this.editCategoriesId = id;
-  };
-
-  public closeEditModal = () => {
-    this.editCategoriesId = null;
   };
 
   public category(id: string): Category {
