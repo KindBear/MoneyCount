@@ -37,6 +37,15 @@ const theme = createTheme({
         },
       ],
     },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        content: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        },
+      },
+    },
     MuiFormControl: {
       defaultProps: {
         fullWidth: true,
